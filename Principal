@@ -1,0 +1,41 @@
+
+public class Principal {
+
+	public static void main(String[] args) {
+		
+		metodoDeque fila = new metodoDeque();
+		
+		try {
+   
+            Deque Matheus = new Deque("Matheus");
+            Deque Marcos = new Deque("Marcos");
+            Deque Ana = new Deque("Ana");
+            Deque Joao = new Deque("Joao");
+            Deque Luiza = new Deque("Luiza");
+            
+            fila.adicionarFim(Matheus);
+            fila.adicionarFim(Marcos);
+            fila.listar();
+            System.out.println();
+            fila.adicionarInicio(Ana);
+            fila.listar();
+            System.out.println();
+            fila.adicionarFim(Joao);
+            fila.listar();
+            System.out.println();
+            fila.removerInicio();
+            fila.listar();
+            System.out.println();
+            fila.removerFim();
+            fila.removerFim();
+            fila.listar();
+            System.out.println("Total: " + fila.qtdNomes());
+            
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+		
+
+	}
+
+}
