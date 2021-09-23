@@ -1,0 +1,52 @@
+package provaDeque;
+
+public class metodoDeque {
+
+	private Deque inicio = null;
+	private Deque fim = null;
+	private int total = 0;
+	
+	public void adicionarFim(Deque nome) {
+		if(inicio == null) {
+			inicio = nome;
+			fim = nome;
+		}else if(fim.getProximo() == null) {
+			nome.setAnterior(fim);
+			fim.setProximo(nome);
+			fim = nome;
+		}
+		total++;
+	}
+
+	public void listar() {
+		Deque aux = inicio;
+		while(aux != null) {
+			System.out.println(aux.getNome());
+            aux = aux.getProximo();
+		}
+	}
+
+	public void adicionarInicio(Deque nome) {
+		nome.setProximo(inicio);
+		inicio = nome;
+		total++;
+	}
+	
+	public void removerInicio() {
+		Deque aux = inicio;
+		inicio = aux.getProximo();
+		total--;
+	}
+	
+	public void removerFim() {
+		Deque aux = fim;
+		Deque ant = fim.getAnterior();
+		ant.setProximo(null);
+		fim = ant;
+		total--;
+	}
+	
+	public int qtdNomes() {
+		return total;
+	}
+}
