@@ -1,4 +1,3 @@
-package provaDeque;
 
 public class metodoDeque {
 
@@ -20,6 +19,7 @@ public class metodoDeque {
 
 	public void listar() {
 		Deque aux = inicio;
+		
 		while(aux != null) {
 			System.out.println(aux.getNome());
             aux = aux.getProximo();
@@ -27,22 +27,49 @@ public class metodoDeque {
 	}
 
 	public void adicionarInicio(Deque nome) {
-		nome.setProximo(inicio);
-		inicio = nome;
+		if(inicio == null) {
+			inicio = nome;
+			fim = nome;
+		}else if(inicio.getProximo() == null) {
+			nome.setProximo(inicio);
+			inicio.setAnterior(nome);
+			inicio = nome;
+		}else {
+			nome.setProximo(inicio);
+			inicio = nome;
+		}
 		total++;
 	}
 	
 	public void removerInicio() {
+		if(qtdNomes() == 0) {
+			throw new IllegalArgumentException("Deque vazio! Não há elementos para remover.");
+		}
 		Deque aux = inicio;
 		inicio = aux.getProximo();
 		total--;
 	}
 	
 	public void removerFim() {
-		Deque aux = fim;
-		Deque ant = fim.getAnterior();
-		ant.setProximo(null);
-		fim = ant;
+		if(qtdNomes() == 0) {
+			throw new IllegalArgumentException("Deque vazio! Não há elementos para remover.");
+		}
+		
+		Deque aux = inicio;
+		Deque elemento = fim;
+		
+		while(aux != null) {
+			if(aux.getProximo() == elemento) {
+				Deque prox = aux.getProximo();
+				aux.setProximo(prox.getProximo());
+				fim = aux;
+			}
+			else if(aux == elemento) {
+				inicio = elemento.getProximo();
+			}
+			aux = aux.getProximo();
+		}
+		
 		total--;
 	}
 	
